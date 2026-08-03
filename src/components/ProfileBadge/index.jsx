@@ -1,0 +1,13 @@
+function ProfileBadge() {
+    return (
+        <div className="profile-container flex items-center gap-3">
+            <div className="image-wrapper flex max-w-20 rounded-full">
+                <img src="/public/imagem-perfil-default.png" className="max-w-20 rounded-full" alt="Imagem de perfil padrão" />
+            </div>
+            <p className="text-zinc-500 place-self-end"><strong>Olá, Usuário</strong></p>
+        </div>
+    )
+}
+
+
+export default ProfileBadge;
