@@ -1,6 +1,6 @@
 function PlaylistCard() {
     return (
-        <div className="card flex flex-col max-w-50 p-[10px] items-center  bg-mist-900  text-white rounded-md gap-4">
+        <div className="card flex flex-col max-w-50 p-[10px] items-center  bg-white  text-mist-900 rounded-md gap-4">
             <div className="image-wrapper max-w-40 ">
                 <img src="/public/imagem-card-default.png" className="rounded-sm" alt="Capa playlist padrão" />
             </div>

@@ -1,6 +1,6 @@
 function Sidebar() {
     return (
-        <aside className="row-span-1">
+        <aside className="row-span-1 h-full p-5">
             <nav>
                 <ul>
                     <li>Inicío</li>

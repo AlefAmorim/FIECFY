@@ -4,7 +4,7 @@ function ProfileBadge() {
             <div className="image-wrapper flex max-w-20 rounded-full">
                 <img src="/public/imagem-perfil-default.png" className="max-w-20 rounded-full" alt="Imagem de perfil padrão" />
             </div>
-            <p className="text-zinc-500 place-self-end"><strong>Meu perfil</strong></p>
+            <p className="text-amber-50 place-self-end"><strong>Meu perfil</strong></p>
         </div>
     )
 }
