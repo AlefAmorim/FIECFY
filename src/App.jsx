@@ -1,6 +1,7 @@
 import Sidebar from "./components/SideBar"
 import PlaylistGrid from './components/PlaylistGrid';
 import Header from './components/Header'
+import Player from "./components/Player";
 
 function App() {
   return (
@@ -8,8 +9,9 @@ function App() {
         <Sidebar />
       <div className="flex flex-col gap-5 h-full w-full p-5 bg-gray-800 rounded-lg">
         <Header/>
-        <main className="col-start-2 col-end-3 row-start-2">
+        <main className="col-start-2 col-end-3 row-start-2 static">
           <PlaylistGrid/>
+          <Player/>
         </main>
       </div>
     </div>
