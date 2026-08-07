@@ -2,7 +2,7 @@ import ProgressBar from "../ProgressBar";
 
 function Player() {
     return (
-        <footer className="bg-gray-900 fixed w-100 p-3 rounded-lg top-9/12 left-5/12 flex flex-col gap-2">
+        <footer className="bg-gray-900 bg-linear-to-l from-slate-200/20 to-slate-100/20 fixed  backdrop-blur-xs w-100 p-3 rounded-lg top-9/12 left-5/12 flex flex-col gap-2">
             <div className="flex gap-2 items-center justify-center">
                 <h3 className="text-base font-bold">Nome da música</h3>
                 <i>-</i>
