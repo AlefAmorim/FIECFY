@@ -26,7 +26,6 @@ function Player() {
             </div>
         </footer>
     );
-    // fixed
 }
 
 export default Player;
