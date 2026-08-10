@@ -2,7 +2,7 @@ import ProgressBar from "../ProgressBar";
 
 function Player() {
     return (
-        <footer className="bg-linear-to-l from-gray-950/70 to-gray-950/70 sticky  backdrop-blur-md  p-5 rounded-lg bottom-2 grid grid-cols-2  grid-rows-[90%_10%] lg:grid-cols-[40%_1fr_40%] xl:grid-rows-1 h-30  gap-2">
+        <footer className="bg-linear-to-l from-gray-950/70 to-gray-950/70 /*fixed*/  backdrop-blur-md  p-5  grid grid-cols-2  grid-rows-[90%_10%] lg:grid-cols-[40%_1fr_40%] xl:grid-rows-1 w-screen h-30  /*bottom-0*/ gap-2">
             <div className="flex gap-3 items-center justify-center ">
                 <div className="container-image bg-green-500 h-full rounded-md flex items-center">
                     <img src="/public/icon-nota-musical.png" className="h-full" alt="Icone nota musical" />

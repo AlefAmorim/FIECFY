@@ -3,17 +3,34 @@ import PlaylistGrid from './components/PlaylistGrid';
 import Header from './components/Header'
 import Player from "./components/Player";
 
+// function App() {
+//   return (
+//     <div className="layout-principal  grid grid-1 w-screen md:grid-cols-[220px_1fr]  text-white bg-gray-900 min-h-dvh">
+//         <Sidebar />
+//       <div className="flex flex-col gap-5 h-full w-full p-5 bg-gray-800 rounded-lg">
+//         <Header/>
+//         <main className="flex col-start-2 col-end-3 row-start-2  ">
+//           <PlaylistGrid/>
+//         </main>
+//       </div>
+//       <Player/> 
+//     </div>
+//   )
+// }
 function App() {
   return (
-    <div className="layout-principal p-2 grid grid-1 w-screen md:grid-cols-[160px_1fr]  text-white bg-gray-900 min-h-dvh">
-        <Sidebar />
-      <div className="flex flex-col gap-5 h-full w-full p-5 bg-gray-800 rounded-lg">
-        <Header/>
-        <main className="col-start-2 col-end-3 row-start-2 static ">
-          <PlaylistGrid/>
-          <Player/>
+    <div className="layout-principal flex flex-col  w-screen text-white bg-gray-900 h-screen">
+      <div className="flex flex-1 overflow-hidden ">
+          <Sidebar />
+        <main className="flex-1 /*flex-col*/ gap-5 h-full w-full m-2 p-6 bg-gray-800 rounded-lg overflow-y-auto">
+          <Header/>
+          <div className="h-[800px] pt-5">
+            <PlaylistGrid/>
+          </div>
         </main>
+
       </div>
+      <Player/> 
     </div>
   )
 }
