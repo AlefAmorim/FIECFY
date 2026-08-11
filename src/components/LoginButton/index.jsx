@@ -1,6 +1,6 @@
-function LoginButton(){
+function LoginButton({handleClick}){
   return (
-    <div className="w-full">
+    <div className="w-full" onClick={handleClick}>
       <button className="bg-green-500 text-white rounded-full w-30 py-3 px-8 font-bold hover:bg-green-400 hover:scale-105 transition-transform">Login</button>
     </div>
   )
