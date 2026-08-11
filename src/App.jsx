@@ -19,10 +19,10 @@ import Player from "./components/Player";
 // }
 function App() {
   return (
-    <div className="layout-principal flex flex-col  w-screen text-white bg-gray-900 h-screen">
+    <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen">
       <div className="flex flex-1 overflow-hidden ">
           <Sidebar />
-        <main className="flex-1 /*flex-col*/ gap-5 h-full w-full m-2 p-6 bg-gray-800 rounded-lg overflow-y-auto">
+        <main className="flex-1 /*flex-col*/ gap-5 h-full w-full m-2 p-6 bg-zinc-900 rounded-lg overflow-y-auto">
           <Header/>
           <div className="h-[800px] pt-5">
             <PlaylistGrid/>

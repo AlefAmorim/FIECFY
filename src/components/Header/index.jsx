@@ -5,7 +5,7 @@ import { useState } from "react";
 function Header() {
     const [isLogado, setIsLogado] = useState(false);
     return (
-        <header className="max-h-200 sticky top-0 z-10 bg-zinc-900 rounded-md w-full flex items-center gap-2 justify-between p-2 flex-col md:flex-row md:justify-between">
+        <header className="max-h-200 sticky top-0 z-10 bg-zinc-900/90 rounded-md w-full flex items-center gap-2 justify-between p-2 flex-col md:flex-row md:justify-between">
                 {
                     isLogado ? <ProfileBadge/>:
                     <div className="botoes-wrapper flex gap-3  justify-end items-end">
