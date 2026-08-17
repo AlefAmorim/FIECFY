@@ -2,6 +2,7 @@ import Sidebar from "./components/SideBar"
 import PlaylistGrid from './components/PlaylistGrid';
 import Header from './components/Header'
 import Player from "./components/Player";
+import Button from "./components/Button";
 
 // function App() {
 //   return (
@@ -27,8 +28,10 @@ function App() {
           <div className="h-[800px] pt-5">
             <PlaylistGrid/>
           </div>
+        <Button>
+          Play
+        </Button>
         </main>
-
       </div>
       <Player/> 
     </div>
