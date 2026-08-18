@@ -1,4 +1,4 @@
-function SidebarItem({ text, icon, link }) {
+function SidebarItem({ text/*, icon*/, link }) {
   return (
     <a
       href={link || "#"}
