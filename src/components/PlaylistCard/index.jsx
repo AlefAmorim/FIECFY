@@ -9,7 +9,7 @@ function PlaylistCard({title, description, imgUrl}) {
                     Play
                 </div>
                 <h2 className="titulo font-semibold text-xl">{title}</h2>
-                <p className="descricao ">{description}</p>
+                <p className="descricao text-balance">{description}</p>
             </div>
         </div>
     );
