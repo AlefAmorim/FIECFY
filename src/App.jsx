@@ -5,6 +5,8 @@ import Player from "./components/Player";
 import Button from "./components/Button";
 import CompactCard from "./components/CompactCard";
 
+import { playlistData } from "./data/mockData";
+
 function App() {
   return (
     <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen">
@@ -19,7 +21,8 @@ function App() {
             <CompactCard title="Top 10"/>
           </div>
           <div className="h-[800px] pt-5">
-            <PlaylistGrid/>
+            <h2 className="text-2xl font-bold text-white mb-6">Feito para você</h2>
+            <PlaylistGrid playlistData={playlistData}/>
           </div>
         <Button>
           Play

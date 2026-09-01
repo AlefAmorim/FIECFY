@@ -6,7 +6,7 @@ function Player() {
         <footer className="bg-linear-to-l from-zinc-950/70 to-zinc-950/70 /*fixed*/  backdrop-blur-md  p-5   flex justify-center  w-screen h-30  gap-2">
             <div className="flex  gap-3 items-center justify-start ">
                 <div className="container-image bg-green-500 h-full rounded-md flex items-center">
-                    <img src="/public/icon-nota-musical.png" className="h-full" alt="Icone nota musical" />
+                    <img src="/icon-nota-musical.png" className="h-full" alt="Icone nota musical" />
                 </div>
                 <div className="info-musica flex flex-col">
                     <h3 className=" font-bold text-xl">Nome da música</h3>
