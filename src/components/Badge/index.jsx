@@ -1,7 +1,7 @@
 function Badge({ count }) {
   return (
-    <div className="w-8 h-8 rounded-full bg-red-600 text-center absolute p-1 top-0 left-0 hover:scale-103">
-        <span className="font-semibold text-amber-50">{count}</span>
+    <div className="w-6 h-6 rounded-full bg-red-500 text-white text-center absolute  -top-1  flex justify-center items-center hover:scale-103">
+        <span className="font-semibold text-white">{count}</span>
     </div>
   );
 }
