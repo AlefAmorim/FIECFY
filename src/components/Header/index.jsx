@@ -31,7 +31,7 @@ function Header() {
         </div>
       )}
      <div className="flex gap-3">
-      <button className="relative hover:scale-102 cursor-pointer hover:bg-zinc-500/60 rounded-full p-1" onClick={()=> setPopUpAberto(!popUpAberto)}>
+      <button className="relative hover:scale-104  cursor-pointer hover:bg-zinc-500/60 rounded-full p-1" onClick={()=> setPopUpAberto(!popUpAberto)}>
         <MdNotifications size={40}/>
           {notificacoes > 0 && <Badge count={notificacoes} /> }
       </button>

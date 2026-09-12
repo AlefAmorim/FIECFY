@@ -4,10 +4,13 @@ import Header from "./components/Header";
 import Player from "./components/Player";
 import Button from "./components/Button";
 import CompactCard from "./components/CompactCard";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 import { playlistData, playlistFyData, generos } from "./data/mockData";
+import { useState } from "react";
 
 function App() {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen">
       <div className="flex flex-1 overflow-hidden ">
@@ -20,6 +23,15 @@ function App() {
             <CompactCard title="Lo-fi" />
             <CompactCard title="Top 10" />
           </div>
+          <section className="pt-3">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+              Minhas playlists
+              <button className="h-10 w-10 flex items-center p-2 hover:bg-zinc-500/30 rounded-full cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
+                { isExpanded ?  <IoMdArrowDropup size={30}/> : <IoMdArrowDropdown size={30}/>  }
+              </button>
+            </h3>
+            {isExpanded && <PlaylistGrid playlistData={playlistFyData} />}
+          </section>
           <section className="h-max pt-5">
             <header>
               <h2 className="text-2xl font-bold text-white mb-6">
