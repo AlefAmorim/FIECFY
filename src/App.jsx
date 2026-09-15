@@ -8,15 +8,33 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 import { playlistData, playlistFyData, generos } from "./data/mockData";
 import { useState } from "react";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
+  const handleInput = (e) => {
+    const { value } = e.target;
+    setSearchTerm(value);
+  };
+
   return (
-    <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen">
+    <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen relative">
       <div className="flex flex-1 overflow-hidden ">
         <Sidebar />
         <main className="flex-1 /*flex-col*/ gap-5 h-full w-full m-2 p-6 pt-0 bg-zinc-900 rounded-lg overflow-y-auto">
-          <Header />
+          <Header searchTerm={searchTerm} loginHandle={() => setIsOpen(true)} handleChange={handleInput} handleClear={clearSearch}/>
+
+          {/* Renderizado ao clicar no botão de login do header */}
+          {isOpen && (
+            <LoginForm isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} />
+          )}
           <div className="flex  flex-row gap-3 pt-10 flex-wrap">
             <CompactCard title="Good Vibes" />
             <CompactCard title="Music to play" />
@@ -26,8 +44,15 @@ function App() {
           <section className="pt-3">
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               Minhas playlists
-              <button className="h-10 w-10 flex items-center p-2 hover:bg-zinc-500/30 rounded-full cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
-                { isExpanded ?  <IoMdArrowDropup size={30}/> : <IoMdArrowDropdown size={30}/>  }
+              <button
+                className="h-10 w-10 flex items-center p-2 hover:bg-zinc-500/30 rounded-full cursor-pointer"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                {isExpanded ? (
+                  <IoMdArrowDropup size={30} />
+                ) : (
+                  <IoMdArrowDropdown size={30} />
+                )}
               </button>
             </h3>
             {isExpanded && <PlaylistGrid playlistData={playlistFyData} />}
@@ -41,6 +66,18 @@ function App() {
             <PlaylistGrid
               playlistData={playlistData.filter(
                 (data) => data.type === "podcast",
+              )}
+            />
+          </section>
+          <section className="h-max pt-5">
+            <header>
+              <h2 className="text-2xl font-bold text-white mb-6">
+                Ta na moda
+              </h2>
+            </header>
+            <PlaylistGrid
+              playlistData={playlistFyData.filter(
+                (album) => album.title.toLowerCase().includes(searchTerm.toLowerCase())
               )}
             />
           </section>
