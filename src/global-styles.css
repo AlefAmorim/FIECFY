@@ -2,7 +2,8 @@
 
 @theme {
   --animate-fade-in: fadeIn .2s ease-in;
-  --animate-fade-out: fadeIn .2s ease-out;
+  --animate-slade-in: slideIn .2s ease-in;
+  --animate-spin: spin .4s linear infinite ;
 
   @keyframes fadeIn {
     0% {
@@ -12,6 +13,19 @@
     100% {
       opacity: 100;
       transform: translateY(0);
+    }
+  }
+  @keyframes slideIn {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes spin {
+    100% {
+      transform: rotateZ(360deg);
     }
   }
 }

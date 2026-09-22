@@ -2,8 +2,8 @@ import { MdPlayArrow } from "react-icons/md";
 
 function PlaylistCard({title, description, imgUrl}) {
     return (
-        <div className="group card flex-none relative flex flex-col w-50  p-3 items-center    text-white rounded-lg cursor-pointer hover:bg-zinc-700/20 hover:scale-102  transition-colors">
-            <div className="image-wrapper max-w-full     hover:bg-zinc-800 transition-colors">
+        <div className="group card flex-none relative flex flex-col w-45  p-3 items-center    text-white justify-between rounded-lg cursor-pointer hover:bg-zinc-700/20 hover:scale-102  transition-colors">
+            <div className="image-wrapper max-w-full hover:bg-zinc-800 transition-colors">
                 <img src={imgUrl || "/imagem-card-default.png"} className="rounded-md" alt="Capa playlist padrão" />
             </div>
             <div className="info-musica flex flex-col justify-end">
