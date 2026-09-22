@@ -6,14 +6,15 @@ import Button from "./components/Button";
 import CompactCard from "./components/CompactCard";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
-import { playlistData, playlistFyData, generos } from "./data/mockData";
-import { useState } from "react";
+import { playlistData, generos } from "./data/mockData";
+import { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 
 function App() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [playlist, setPlaylist] = useState();
 
   const clearSearch = () => {
     setSearchTerm("");
@@ -23,6 +24,16 @@ function App() {
     const { value } = e.target;
     setSearchTerm(value);
   };
+
+  useEffect(() => {
+    const buscarDados = async () => {
+      const response = await fetch("https://jsonplaceholder.typicode.com/albums/1/photos");
+      const data = await response.json();
+      setPlaylist(data);
+    }
+
+    buscarDados();
+  },[])
 
   return (
     <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen relative">
@@ -55,7 +66,7 @@ function App() {
                 )}
               </button>
             </h3>
-            {isExpanded && <PlaylistGrid playlistData={playlistFyData} />}
+            {isExpanded && <PlaylistGrid playlistData={playlist} />}
           </section>
           <section className="h-max pt-5">
             <header>
@@ -76,7 +87,7 @@ function App() {
               </h2>
             </header>
             <PlaylistGrid
-              playlistData={playlistFyData.filter(
+              playlistData={playlistData.filter(
                 (album) => album.title.toLowerCase().includes(searchTerm.toLowerCase())
               )}
             />
@@ -98,7 +109,7 @@ function App() {
                 ))}
               </div>
             </header>
-            <PlaylistGrid playlistData={playlistFyData} />
+            <PlaylistGrid playlistData={playlistData} />
           </section>
           <Button>Play</Button>
         </main>
