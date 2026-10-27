@@ -1,4 +1,5 @@
 import SidebarItem from "../SidebarItem.jsx";
+import { BiSolidHome, BiLibrary, BiSearch } from "react-icons/bi";
 
 const menuItems = {
   nav_up: [
@@ -6,13 +7,13 @@ const menuItems = {
       id: 1,
       label: "Início",
       link: "/home",
-      icon: "",
+      icon: <BiSolidHome size={20} />,
     },
     {
       id: 2,
       label: "Buscar",
       link: "/busca",
-      icon: "",
+      icon: <BiSearch size={20} />,
     },
   ],
   nav_down: [
@@ -20,7 +21,7 @@ const menuItems = {
       id: 3,
       label: "Sua biblioteca",
       link: "/minha-biblioteca",
-      icon: "",
+      icon: <BiLibrary size={20} />,
     },
   ],
 };
@@ -30,13 +31,13 @@ function Sidebar() {
     <aside className="row-span-1 h-full w-72 p-5 hidden md:flex md:flex-col md:gap-6">
       <nav className="w-full flex flex-col gap-4">
         {menuItems.nav_up.map((item) => (
-          <SidebarItem text={item.label} link={item.link} key={item.id} />
+          <SidebarItem text={item.label} link={item.link} icon={item.icon} key={item.id} />
         ))}
       </nav>
       <div className="w-full h-px bg-zinc-800"></div>
       <nav className="w-full">
         {menuItems.nav_down.map((item) => (
-          <SidebarItem text={item.label} link={item.link} key={item.id} />
+          <SidebarItem text={item.label} link={item.link} icon={item.icon} key={item.id} />
         ))}
       </nav>
     </aside>

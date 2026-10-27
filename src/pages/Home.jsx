@@ -85,46 +85,11 @@ const [isExpanded, setIsExpanded] = useState(false);
             </h3>
             {isExpanded && <PlaylistGrid playlistData={playlistData} />}
           </section>
-          <section className="h-max pt-5">
-            <header>
-              <h2 className="text-2xl font-bold text-white mb-6">
-                Feito para você
-              </h2>
-            </header>
-            <div className="flex justify-center">
-            <PlaylistGrid
-              playlistData={playlistData.filter(
-                (data) => data.type === "podcast",
-              )}
-              />
-            </div>
-          </section>
-          <section className="h-max pt-5">
-            <header>
-              <h2 className="text-2xl font-bold text-white mb-6">
-                Ta na moda
-              </h2>
-            </header>
-            {
-              isLoading ?
-              <FaSpinner className="animate-spin inline-block" size={50} />
-              : erro ? 
-              <span className="flex absolute top-10 right-40 z-100 p-3 gap-3 bg-white rounded-xl text-red-500 font-semibold items-center justify-center animate-slade-in">
-                <span className="h-10 w-10 flex justify-center items-center rounded-full border-2 border-red-500 text-red-500 p-3 font-semibold text-xl">X</span>
-                {erro}
-                </span>
-              : <PlaylistGrid
-              playlistData={playlist.filter(
-                (album) => album.title.toLowerCase().includes(searchTerm.toLowerCase())
-              )}
-            />
-            }
-          </section>
           <section className="flex flex-col gap-5 h-max pt-5 pb-5">
             {/* Header da seção */}
             <header>
               <h2 className="text-2xl font-bold text-white mb-6">Explorar</h2>
-              <div className="flex  gap-2 justify-evenly">
+              <div className="flex  gap-2 ">
                 {generos.map((genero) => (
                   <span
                     className={`min-w-30 p-2 text-center rounded-4xl border-2 font-bold hover:scale-105  hover:bg-gray-400/20 cursor-pointer  transition-transform 
@@ -139,7 +104,6 @@ const [isExpanded, setIsExpanded] = useState(false);
             </header>
             <PlaylistGrid playlistData={playlistData} />
           </section>
-          <Button>Play</Button>
         </main>
       </div>
       <Player />
