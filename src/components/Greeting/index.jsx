@@ -1,7 +1,7 @@
 
 function Greeting({nome}) {
     return (
-        <h1>Boa tarde, {nome}!</h1>
+        <h1>Olá, {nome}!</h1>
     )
 }
 

@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaSpotify, FaApple, FaFacebook } from "react-icons/fa";
 import Button from "../Button";
 
-const LoginForm = ({ isOpen, handleClose }) => {
+const LoginForm = ({ isOpen, handleClose, userChange }) => {
   const [showPass, setShowPass] = useState(false);
   const [dados, setDados] = useState({
     email: "",
@@ -18,10 +18,29 @@ const LoginForm = ({ isOpen, handleClose }) => {
       [name]:value
     });
   }
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(dados);
+    try {
+      console.log(dados)
+      const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
+        method: "POST",
+        body: JSON.stringify(dados),
+        // headers:{
+        //   "Access-Control-Allow-Origin":['http://localhost:5173/']
+        // }
+      });
+      if(!response.ok) throw Error("Falha ao realizar login", {cause:"INTERNAL"});
+      const dadosJson = await response.json();
+      console.log(dadosJson);
+      userChange(dadosJson);
+    } catch (error) {
+      console.error(error.cause);
+      console.error(error.code);
+      console.error(error.message);
+    }
   };
+  
   return (
     <div className={` p-4 absolute bg-zinc-800 h-max w-110 rounded-md z-4 ${isOpen?'animate-fade-out':"animate-fade-in"}`}>
       <header className="flex justify-between items-center p-3">
@@ -61,15 +80,15 @@ const LoginForm = ({ isOpen, handleClose }) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="senha" className="font-semibold">
+          <label htmlFor="password" className="font-semibold">
             Senha
           </label>
           <div className="px-4 py-2 flex gap-2 items-center rouned-md border-zinc-500 border-2 rounded-lg ">
             <MdOutlinePassword size={20} className="text-zinc-400 " />
             <input
               type={showPass ? "text" : "password"}
-              name="senha"
-              id="senha"
+              name="password"
+              id="password"
               placeholder="Senha"
               className="w-full h-full p-2 outline-0"
               onChange={handleChange}

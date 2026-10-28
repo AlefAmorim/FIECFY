@@ -1,7 +1,7 @@
 import Avatar from "../Avatar";
 import Greeting from "../Greeting";
 
-function ProfileBadge({ children, handleClick }) {
+function ProfileBadge({ children, handleClick, user }) {
   return (
     <div
       className="profile-container flex items-center gap-2"
@@ -12,7 +12,7 @@ function ProfileBadge({ children, handleClick }) {
         <Avatar />
       </div>
       <div className="text-amber-50 place-self-end">
-        <strong><Greeting nome="Alef"/></strong>
+        <strong><Greeting nome={user?.nome}/></strong>
       </div>
     </div>
   );

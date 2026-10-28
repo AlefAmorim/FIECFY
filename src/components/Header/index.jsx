@@ -10,7 +10,7 @@ import {
   MdClose,
 } from "react-icons/md";
 
-function Header({loginHandle, handleClear, handleChange, searchTerm}) {
+function Header({loginHandle, handleClear, handleChange, searchTerm, user}) {
   const [isLogado, setIsLogado] = useState(true);
   const [popUpAberto, setPopUpAberto] = useState(false);
   const [notificacoes, setNotificacoes] = useState(3);
@@ -23,8 +23,8 @@ function Header({loginHandle, handleClear, handleChange, searchTerm}) {
 
   return (
     <header className="max-h-200 sticky top-0 z-10 bg-zinc-900/90 rounded-md w-full flex items-center gap-2 justify-between p-2 flex-row md:justify-between">
-      {isLogado ? (
-        <ProfileBadge handleClick={() => setIsLogado(!isLogado)}></ProfileBadge>
+      {user ? (
+        <ProfileBadge user={user} />
       ) : (
         <div className="botoes-wrapper flex gap-3  justify-end items-end">
           <button

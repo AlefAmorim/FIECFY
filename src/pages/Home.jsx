@@ -1,25 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import { FaSpinner } from "react-icons/fa";
 import Sidebar from "../components/SideBar";
 import PlaylistGrid from "../components/PlaylistGrid";
 import Header from "../components/Header";
 import Player from "../components/Player";
-import Button from "../components/Button";
 import CompactCard from "../components/CompactCard";
 import { playlistData, generos } from "../data/mockData";
 import LoginForm from "../components/LoginForm";
-import { UserContext } from "../contexts/UserContext";
 
-function Home() {
-  const dadosUser = useContext(UserContext);
-const [isExpanded, setIsExpanded] = useState(false);
+function Home({user, userChange}) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [erro, setErro] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [playlist, setPlaylist] = useState([]);
-
   const clearSearch = () => {
     setSearchTerm("");
   };
@@ -29,44 +21,29 @@ const [isExpanded, setIsExpanded] = useState(false);
     setSearchTerm(value);
   };
 
-  useEffect(() => {
-    const buscarDados = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/albums/1/photos_invalida");
-        if(!response.ok){
-          throw new Error("Falha");
-        }
-        const data = await response.json();
-        setPlaylist(data.slice(0,10));
-      } catch(error) {
-        console.error(error);
-        setErro("Falha ao buscar playlists!Tente novamente mais tarde.")
-      }finally{
-        setTimeout(()=>{
-          setIsLoading(false);
-        }, 1000)
-      }
-    }
-    console.log(dadosUser)
-    buscarDados();
-  },[])
-
   return (
     <div className="layout-principal flex flex-col  w-screen text-white bg-zinc-950 h-screen relative">
       <div className="flex flex-1 overflow-hidden ">
         <Sidebar />
         <main className="flex-1 /*flex-col*/ gap-5 h-full w-full m-2 p-6 pt-0 bg-zinc-900 rounded-lg overflow-y-auto">
-          <Header searchTerm={searchTerm} loginHandle={() => setIsOpen(true)} handleChange={handleInput} handleClear={clearSearch}/>
+          <Header
+            searchTerm={searchTerm}
+            loginHandle={() => setIsOpen(true)}
+            handleChange={handleInput}
+            handleClear={clearSearch}
+            user={user}
+          />
 
           {/* Renderizado ao clicar no botão de login do header */}
           {isOpen && (
-            <LoginForm isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} />
+            <LoginForm isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} userChange={userChange}/>
           )}
           <div className="flex  flex-row gap-3 pt-10 flex-wrap">
             <CompactCard title="Good Vibes" />
             <CompactCard title="Music to play" />
             <CompactCard title="Lo-fi" />
+            <CompactCard title="Rock" />
+            <CompactCard title="Favoritos" />
             <CompactCard title="Top 10" />
           </div>
           <section className="pt-3">

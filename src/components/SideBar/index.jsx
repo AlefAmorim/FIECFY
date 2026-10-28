@@ -6,7 +6,7 @@ const menuItems = {
     {
       id: 1,
       label: "Início",
-      link: "/home",
+      link: "/",
       icon: <BiSolidHome size={20} />,
     },
     {
