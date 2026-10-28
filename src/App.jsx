@@ -6,8 +6,17 @@ function App() {
   const [user, setUser] = useState(null);
   useEffect( ()=>{
     const fetchUser = async () => {
+      if(localStorage.getItem("dados")){
+        setUser(JSON.parse(localStorage.getItem("dados"))); 
+        return;
+      }
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/auth/me");
+        const tkn = localStorage.getItem("tkn")
+        const response = await fetch("http://127.0.0.1:8000/api/auth/me", {
+          headers: {
+            "Authorization": `Bearer ${tkn}`
+          }
+        });
         if(!response.ok) {
           throw Error();
         }
@@ -18,9 +27,12 @@ function App() {
         console.error(error);
       }
     }
-
     fetchUser();
   }, []);
+
+  useEffect(()=>{
+    console.log(user)
+  }, [user]);
   return (
       <Router>
         <Routes>

@@ -5,41 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaSpotify, FaApple, FaFacebook } from "react-icons/fa";
 import Button from "../Button";
 
-const LoginForm = ({ isOpen, handleClose, userChange }) => {
+const LoginForm = ({ isOpen, handleClose, handleChange, handleSubmit }) => {
   const [showPass, setShowPass] = useState(false);
-  const [dados, setDados] = useState({
-    email: "",
-    senha: "",
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDados({
-      ...dados,
-      [name]:value
-    });
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      console.log(dados)
-      const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
-        method: "POST",
-        body: JSON.stringify(dados),
-        // headers:{
-        //   "Access-Control-Allow-Origin":['http://localhost:5173/']
-        // }
-      });
-      if(!response.ok) throw Error("Falha ao realizar login", {cause:"INTERNAL"});
-      const dadosJson = await response.json();
-      console.log(dadosJson);
-      userChange(dadosJson);
-    } catch (error) {
-      console.error(error.cause);
-      console.error(error.code);
-      console.error(error.message);
-    }
-  };
+  
   
   return (
     <div className={` p-4 absolute bg-zinc-800 h-max w-110 rounded-md z-4 ${isOpen?'animate-fade-out':"animate-fade-in"}`}>

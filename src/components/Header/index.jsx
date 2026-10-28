@@ -1,6 +1,6 @@
 import ProfileBadge from "../ProfileBadge";
 import LoginButton from "../LoginButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Badge from "../Badge";
 import {
   MdSearch,
@@ -18,7 +18,6 @@ function Header({loginHandle, handleClear, handleChange, searchTerm, user}) {
     setNotificacoes(0);
     setPopUpAberto(!popUpAberto);
   };
-
   
 
   return (

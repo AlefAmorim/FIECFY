@@ -8,10 +8,14 @@ import CompactCard from "../components/CompactCard";
 import { playlistData, generos } from "../data/mockData";
 import LoginForm from "../components/LoginForm";
 
-function Home({user, userChange}) {
+function Home({ user, userChange }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [dados, setDados] = useState({
+    email: "",
+    password: "",
+  });
   const clearSearch = () => {
     setSearchTerm("");
   };
@@ -19,6 +23,39 @@ function Home({user, userChange}) {
   const handleInput = (e) => {
     const { value } = e.target;
     setSearchTerm(value);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDados({
+      ...dados,
+      [name]: value
+    });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(dados)
+      const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
+        method: "post",
+        body: JSON.stringify(dados),
+        headers: {
+          "Accept": 'application/json',
+          "Content-Type": 'application/json'
+        }
+      });
+      const dadosJson = await response.json();
+      if (!response.ok) throw Error(dadosJson.message, { cause: "INTERNAL" });
+      localStorage.setItem("tkn", dadosJson.tkn)
+      localStorage.setItem("dados", JSON.stringify(dadosJson.dados))
+      userChange(dadosJson.dados);
+      setIsOpen(!isOpen)
+    } catch (error) {
+      console.error(error.cause);
+      console.error(error.code);
+      console.error(error.message);
+    }
   };
 
   return (
@@ -36,7 +73,7 @@ function Home({user, userChange}) {
 
           {/* Renderizado ao clicar no botão de login do header */}
           {isOpen && (
-            <LoginForm isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} userChange={userChange}/>
+            <LoginForm handleChange={handleChange} handleSubmit={handleSubmit} isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} />
           )}
           <div className="flex  flex-row gap-3 pt-10 flex-wrap">
             <CompactCard title="Good Vibes" />

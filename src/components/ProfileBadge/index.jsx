@@ -12,7 +12,7 @@ function ProfileBadge({ children, handleClick, user }) {
         <Avatar />
       </div>
       <div className="text-amber-50 place-self-end">
-        <strong><Greeting nome={user?.nome}/></strong>
+        <strong><Greeting nome={user?.name}/></strong>
       </div>
     </div>
   );
