@@ -33,6 +33,33 @@ function Home({ user, userChange }) {
     });
   }
 
+  const handleChangePic = async (e) => {
+    const { value, name, files } = e.target;
+    const formData = new FormData();
+    formData.append(name, files[0]);
+    const tkn = localStorage.getItem("tkn")
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/user/upload", {
+        method:"post",
+        body: formData,
+        headers:{
+          "Authorization": `Bearer ${tkn}`,
+          "Accept": "application/json",
+        }
+      });
+
+      const resposta = await response.json();
+      if(!response.ok) throw new Error(reposta);
+
+      const { dados } = resposta;
+      dados.pic_url = `http://127.0.0.1:8000/${dados.pic_url}`;
+
+      userChange(dados);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -69,6 +96,7 @@ function Home({ user, userChange }) {
             handleChange={handleInput}
             handleClear={clearSearch}
             user={user}
+            handlePictureChange={handleChangePic}
           />
 
           {/* Renderizado ao clicar no botão de login do header */}
